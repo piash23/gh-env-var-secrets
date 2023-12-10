@@ -14,8 +14,8 @@ jobs:
     # job level variable (for testing we may use diffenent database)
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.e24hlsa.mongodb.net
-      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
-      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME1 }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD1}}
       PORT: 8080
       
     runs-on: ubuntu-latest
