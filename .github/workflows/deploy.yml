@@ -4,10 +4,19 @@ on:
     branches:
       - main
       - dev
-# 
+# workflow level environment variable
+env:
+  MONGODB_DB_NAME: gha-demo
+
 jobs:
   test:
-    environment: testing
+    # job level variable (for testing we may use diffenent database)
+    env:
+      MONGODB_CLUSTER_ADDRESS: cluster0.e24hlsa.mongodb.net
+      MONGODB_USERNAME: piash
+      MONGODB_PASSWORD: Rk5iRCeJPFbJgnSz
+      PORT: 8080
+      
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -20,11 +29,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run server
-        run: npm start & npx wait-on http://127.0.0.1:XYZ
+        run: npm start & npx wait-on http://127.0.0.1:$PORT # a way to access env variable
       - name: Run tests
         run: npm test
       - name: Output information
-        run: echo "..."
+        run: echo "Mongodb username ${{env.MONGODB_USERNAME}}" # another way to access env variable
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -32,3 +41,4 @@ jobs:
       - name: Output information
         run: |        
           echo "..."
+          echo "MONGODB_DB_NAME: $MONGODB_DB"
