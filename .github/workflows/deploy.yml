@@ -10,6 +10,7 @@ env:
 
 jobs:
   test:
+    environment: testing
     # job level variable (for testing we may use diffenent database)
     env:
       MONGODB_CLUSTER_ADDRESS: cluster0.e24hlsa.mongodb.net
