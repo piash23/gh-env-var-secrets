@@ -41,4 +41,4 @@ jobs:
       - name: Output information
         run: |        
           echo "..."
-          echo "MONGODB_DB_NAME: $MONGODB_DB"
+          echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
